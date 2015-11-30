@@ -13,18 +13,18 @@
 
 (defn create-hands [deck]
   (set (for [c1 deck
-         c2 (disj deck c1)
-         c3 (disj deck c1 c2)
-         c4 (disj deck c1 c2 c3)]
-     #{c1 c2 c3 c4})))
+             c2 (disj deck c1)
+             c3 (disj deck c1 c2)
+             c4 (disj deck c1 c2 c3)]
+         #{c1 c2 c3 c4})))
 
 (defn flush? [hand]
-  (= 1 (count(set (map :suit hand)))))
+  (= 1 (count (set (map :suit hand)))))
 
 
 (defn -main
   [& args]
-  (let [deck (create-deck)
-        hands (create-hands deck)
-        hands (filter flush? hands)]
-      (println (count hands))))
+  (time (let [deck (create-deck)
+              hands (create-hands deck)
+              hands (filter flush? hands)]
+          (println (count hands)))))
